@@ -45,7 +45,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex h-screen w-full bg-background">
+    <div className="flex h-screen w-full bg-background overflow-hidden">
       {/* Sidebar */}
       <ChatGPTSidebar
         conversations={conversations}
@@ -61,7 +61,7 @@ const ChatPage = () => {
       />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
         {activeSection === "chat" && (
           <>
             <TopNavbar

@@ -145,7 +145,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
   };
 
   return (
-    <div className="w-full px-3 py-2 border-t border-border bg-background">
+    <div className="w-full px-3 py-2 border-t border-border bg-background/95 backdrop-blur-sm">
       <div className="max-w-4xl mx-auto w-full">
         {/* Quick Actions Popup */}
         {showQuickActions && (
