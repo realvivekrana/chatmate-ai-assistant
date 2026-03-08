@@ -81,10 +81,10 @@ const MessageBubble = ({ message, onRegenerate, onDelete }: MessageBubbleProps) 
       )}
 
       {/* Message content */}
-      <div className="flex flex-col gap-2 chat-message w-full">
+      <div className="flex flex-col gap-2 max-w-[90%] md:max-w-[75%] lg:max-w-[65%]">
         <div
           className={`
-            px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 rounded-2xl text-sm sm:text-base leading-relaxed break-words
+            px-4 py-3 rounded-2xl text-sm sm:text-base leading-relaxed break-words
             transition-all duration-200
             ${
               isUser

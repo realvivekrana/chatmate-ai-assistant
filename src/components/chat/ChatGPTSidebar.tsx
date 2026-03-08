@@ -172,7 +172,7 @@ const ChatGPTSidebar = ({
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
           onClick={onClose}
         />
       )}
@@ -180,15 +180,15 @@ const ChatGPTSidebar = ({
       {/* Sidebar panel */}
       <aside
         className={`
-          fixed lg:relative z-50 top-0 left-0 h-full
-          w-[280px] sm:w-64 bg-sidebar flex flex-col
+          fixed top-0 left-0 h-full w-72 z-50 bg-sidebar flex flex-col
           border-r border-border
           transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+          ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}
+          md:relative md:translate-x-0
         `}
       >
         {/* Header with New Chat or Search */}
-        <div className="p-3 flex items-center justify-between shrink-0 border-b border-border min-h-[56px]">
+        <div className="flex items-center justify-between px-4 py-3 shrink-0 border-b border-border">
           {searchMode ? (
             /* Search Input */
             <div className="flex-1 flex items-center gap-2 bg-muted rounded-lg px-3 py-2">
@@ -203,7 +203,7 @@ const ChatGPTSidebar = ({
               />
               <button
                 onClick={closeSearch}
-                className="p-0.5 rounded hover:bg-background transition-colors min-w-[24px] min-h-[24px] flex items-center justify-center"
+                className="p-0.5 rounded hover:bg-background transition-colors"
                 aria-label="Close search"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
@@ -217,15 +217,15 @@ const ChatGPTSidebar = ({
                   onNewChat();
                   onClose();
                 }}
-                className="flex-1 flex items-center gap-2 px-3 py-2.5 rounded-lg
-                         text-sm font-medium text-foreground hover:bg-sidebar-hover transition-colors min-h-[44px]"
+                className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg
+                         text-sm font-medium text-foreground hover:bg-sidebar-hover transition-colors"
               >
                 <Plus className="w-5 h-5 shrink-0" />
-                <span className="truncate">New Chat</span>
+                <span>New Chat</span>
               </button>
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg hover:bg-sidebar-hover transition-colors lg:hidden min-w-[40px] min-h-[40px] flex items-center justify-center shrink-0"
+                className="p-2 rounded-lg hover:bg-sidebar-hover transition-colors md:hidden ml-2"
                 aria-label="Close sidebar"
               >
                 <X className="w-5 h-5 text-muted-foreground" />

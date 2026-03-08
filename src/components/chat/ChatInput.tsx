@@ -145,19 +145,19 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
   };
 
   return (
-    <div className="w-full p-2 sm:p-3 md:p-4 border-t border-border/50 bg-background/95 backdrop-blur shrink-0">
-      <div className="max-w-4xl mx-auto w-full relative">
+    <div className="w-full px-3 py-2 border-t border-border/50 bg-background/95 backdrop-blur shrink-0">
+      <div className="max-w-4xl mx-auto w-full">
         {/* Quick Actions Popup */}
         {showQuickActions && (
           <div
             ref={quickActionsRef}
-            className="absolute bottom-full left-0 right-0 sm:left-0 sm:right-auto mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 w-full sm:min-w-[280px] sm:w-auto animate-in fade-in slide-in-from-bottom-2 duration-200"
+            className="absolute bottom-full left-0 right-0 mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 w-full animate-in fade-in slide-in-from-bottom-2 duration-200"
           >
             <div className="flex items-center justify-between px-3 py-2 mb-1">
               <span className="text-sm font-semibold text-foreground">Quick Actions</span>
               <button
                 onClick={() => setShowQuickActions(false)}
-                className="p-1 hover:bg-muted rounded transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
+                className="p-1 hover:bg-muted rounded transition-colors"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>
@@ -165,7 +165,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             <div className="space-y-1">
               <button
                 onClick={() => handleQuickAction("newChat")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
               >
                 <MessageSquarePlus className="w-5 h-5 text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -175,7 +175,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
               </button>
               <button
                 onClick={() => handleQuickAction("upload")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
               >
                 <Upload className="w-5 h-5 text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -185,7 +185,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
               </button>
               <button
                 onClick={() => handleQuickAction("generateImage")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
               >
                 <Sparkles className="w-5 h-5 text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -195,7 +195,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
               </button>
               <button
                 onClick={() => handleQuickAction("gallery")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
               >
                 <Image className="w-5 h-5 text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -207,15 +207,14 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           </div>
         )}
 
-        <div className="flex items-end gap-1.5 sm:gap-2 bg-muted/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200 w-full">
+        <div className="flex items-center w-full gap-2 bg-muted/50 rounded-2xl px-3 py-2 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200">
           {/* Plus button */}
           <button
             onClick={() => setShowQuickActions(!showQuickActions)}
-            className={`p-2 rounded-lg transition-colors shrink-0 self-end min-w-[40px] min-h-[40px] flex items-center justify-center ${
+            className={`h-10 w-10 rounded-lg transition-colors shrink-0 flex items-center justify-center ${
               showQuickActions ? "bg-primary text-primary-foreground" : "hover:bg-background/80"
             }`}
             aria-label="Quick actions"
-            title="Quick actions"
             disabled={disabled}
           >
             <Plus className={`w-5 h-5 ${showQuickActions ? "text-primary-foreground" : "text-muted-foreground"}`} />
@@ -230,20 +229,19 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             placeholder={isListening ? "Listening..." : "Send a message..."}
             disabled={disabled || isListening}
             rows={1}
-            className="flex-1 bg-transparent text-sm sm:text-base text-foreground placeholder:text-muted-foreground
-                       resize-none outline-none py-2 max-h-[100px] sm:max-h-[120px] md:max-h-[150px] min-h-[24px] w-full"
+            className="flex-1 min-h-[40px] bg-transparent text-sm sm:text-base text-foreground placeholder:text-muted-foreground
+                       resize-none outline-none max-h-[120px]"
           />
 
           {/* Voice button */}
           <button
             onClick={toggleVoiceInput}
-            className={`p-2 rounded-lg transition-colors shrink-0 self-end min-w-[40px] min-h-[40px] flex items-center justify-center ${
+            className={`h-10 w-10 rounded-lg transition-colors shrink-0 flex items-center justify-center ${
               isListening
                 ? "bg-destructive text-destructive-foreground animate-pulse"
                 : "hover:bg-background/80"
             } ${!voiceSupported ? "opacity-40 cursor-not-allowed" : ""}`}
             aria-label={isListening ? "Stop listening" : "Voice input"}
-            title={!voiceSupported ? "Voice input not supported" : isListening ? "Stop listening" : "Start voice input"}
             disabled={disabled || !voiceSupported}
           >
             {isListening ? (
@@ -257,17 +255,17 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           <button
             onClick={handleSend}
             disabled={!value.trim() || disabled}
-            className="p-2 rounded-lg bg-primary text-primary-foreground
+            className="h-10 w-10 rounded-lg bg-primary text-primary-foreground
                        hover:bg-primary/90 transition-all duration-200
-                       disabled:opacity-40 disabled:cursor-not-allowed shrink-0 self-end
-                       shadow-sm hover:shadow-md min-w-[40px] min-h-[40px] flex items-center justify-center"
+                       disabled:opacity-40 disabled:cursor-not-allowed shrink-0
+                       shadow-sm hover:shadow-md flex items-center justify-center"
             aria-label="Send message"
           >
             <Send className="w-5 h-5" />
           </button>
         </div>
-        <p className="text-[10px] sm:text-xs text-muted-foreground text-center mt-2 px-2">
-          Press <kbd className="px-1.5 py-0.5 bg-muted rounded text-foreground text-[10px]">Enter</kbd> to send, <kbd className="px-1.5 py-0.5 bg-muted rounded text-foreground text-[10px]">Shift + Enter</kbd> for new line
+        <p className="text-xs text-muted-foreground text-center mt-2 hidden sm:block">
+          Press <kbd className="px-1.5 py-0.5 bg-muted rounded text-foreground text-xs">Enter</kbd> to send, <kbd className="px-1.5 py-0.5 bg-muted rounded text-foreground text-xs">Shift + Enter</kbd> for new line
         </p>
       </div>
     </div>
