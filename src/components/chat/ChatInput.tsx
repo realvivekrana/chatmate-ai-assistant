@@ -151,7 +151,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
         {showQuickActions && (
           <div
             ref={quickActionsRef}
-            className="absolute bottom-full left-0 right-0 sm:left-0 sm:right-auto mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 sm:min-w-[240px] animate-in fade-in slide-in-from-bottom-2 duration-200 mx-2 sm:mx-0"
+            className="absolute bottom-full left-0 right-0 sm:left-0 sm:right-auto mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 w-full sm:min-w-[280px] sm:w-auto animate-in fade-in slide-in-from-bottom-2 duration-200"
           >
             <div className="flex items-center justify-between px-3 py-2 mb-1">
               <span className="text-sm font-semibold text-foreground">Quick Actions</span>
@@ -207,7 +207,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           </div>
         )}
 
-        <div className="flex items-end gap-1.5 sm:gap-2 bg-muted/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200">
+        <div className="flex items-end gap-1.5 sm:gap-2 bg-muted/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200 w-full">
           {/* Plus button */}
           <button
             onClick={() => setShowQuickActions(!showQuickActions)}
@@ -231,7 +231,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             disabled={disabled || isListening}
             rows={1}
             className="flex-1 bg-transparent text-sm sm:text-base text-foreground placeholder:text-muted-foreground
-                       resize-none outline-none py-2 max-h-[100px] sm:max-h-[120px] md:max-h-[150px] min-h-[24px]"
+                       resize-none outline-none py-2 max-h-[100px] sm:max-h-[120px] md:max-h-[150px] min-h-[24px] w-full"
           />
 
           {/* Voice button */}

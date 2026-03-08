@@ -39,10 +39,17 @@ const saveConversations = (conversations: Conversation[]) => {
 /** Custom hook that manages all chat state and logic */
 export function useChat() {
   const [conversations, setConversations] = useState<Conversation[]>(loadConversations);
-  const [activeConversationId, setActiveConversationId] = useState<string | null>(() => {
-    return localStorage.getItem(ACTIVE_CHAT_KEY);
-  });
+  const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
   const [isTyping, setIsTyping] = useState(false);
+
+  // Initialize with a new chat on first load
+  useEffect(() => {
+    // Clear active chat from localStorage on page load
+    localStorage.removeItem(ACTIVE_CHAT_KEY);
+    
+    // Start with no active conversation (shows welcome screen)
+    setActiveConversationId(null);
+  }, []);
 
   // Persist conversations to localStorage
   useEffect(() => {
