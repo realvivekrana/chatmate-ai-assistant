@@ -44,11 +44,11 @@ const ChatWindow = ({ conversation, isTyping, onSend, onNewChat, onOpenGallery }
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-full">
       {/* Messages area - scrollable */}
       <div 
         ref={scrollRef} 
-        className="flex-1 overflow-y-auto"
+        className="flex-1 overflow-y-auto pb-2"
         onScroll={handleScroll}
       >
         {!conversation || conversation.messages.length === 0 ? (
@@ -114,12 +114,14 @@ const ChatWindow = ({ conversation, isTyping, onSend, onNewChat, onOpenGallery }
       </div>
 
       {/* Input - sticky at bottom */}
-      <ChatInput 
-        onSend={onSend} 
-        disabled={isTyping}
-        onNewChat={onNewChat}
-        onOpenGallery={onOpenGallery}
-      />
+      <div className="shrink-0">
+        <ChatInput 
+          onSend={onSend} 
+          disabled={isTyping}
+          onNewChat={onNewChat}
+          onOpenGallery={onOpenGallery}
+        />
+      </div>
     </div>
   );
 };
