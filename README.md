@@ -164,6 +164,26 @@ Plus button menu includes:
 
 ## 🌐 Deployment
 
+### GitHub Pages (Current Deployment)
+
+The project is deployed on GitHub Pages at:
+**https://realvivekrana.github.io/chatmate-ai-assistant/**
+
+To redeploy:
+```bash
+npm run deploy
+```
+
+This will:
+1. Build the project (`npm run build`)
+2. Deploy to `gh-pages` branch
+3. Update the live site
+
+**Important Files for GitHub Pages**:
+- `.nojekyll` - Prevents Jekyll processing
+- `404.html` - Handles client-side routing redirects
+- `basename="/chatmate-ai-assistant"` in App.tsx - Configures React Router for subdirectory
+
 ### Build for Production
 ```bash
 npm run build
@@ -171,7 +191,7 @@ npm run build
 
 Output directory: `dist/`
 
-### Deploy to Vercel
+### Deploy to Vercel (Alternative)
 ```bash
 # Install Vercel CLI
 npm install -g vercel
