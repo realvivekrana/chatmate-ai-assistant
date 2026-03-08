@@ -16,6 +16,7 @@ const Index = () => {
     sendMessage,
     setActiveConversationId,
     deleteConversation,
+    renameConversation,
   } = useChat();
 
   return (
@@ -27,6 +28,7 @@ const Index = () => {
         onSelect={setActiveConversationId}
         onNewChat={createNewChat}
         onDelete={deleteConversation}
+        onRename={renameConversation}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />

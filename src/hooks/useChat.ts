@@ -1,15 +1,62 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Message, Conversation } from "@/types/chat";
-import { getRandomResponse, getResponseDelay } from "@/data/dummyResponses";
+import { generateAIResponse } from "@/utils/aiResponses";
 
 /** Generate a unique ID */
 const generateId = () => crypto.randomUUID();
 
+const STORAGE_KEY = "chatmate_conversations";
+const ACTIVE_CHAT_KEY = "chatmate_active_chat";
+
+/** Load conversations from localStorage */
+const loadConversations = (): Conversation[] => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    return parsed.map((conv: any) => ({
+      ...conv,
+      createdAt: new Date(conv.createdAt),
+      messages: conv.messages.map((msg: any) => ({
+        ...msg,
+        timestamp: new Date(msg.timestamp),
+      })),
+    }));
+  } catch {
+    return [];
+  }
+};
+
+/** Save conversations to localStorage */
+const saveConversations = (conversations: Conversation[]) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
+  } catch (error) {
+    console.error("Failed to save conversations:", error);
+  }
+};
+
 /** Custom hook that manages all chat state and logic */
 export function useChat() {
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
+  const [conversations, setConversations] = useState<Conversation[]>(loadConversations);
+  const [activeConversationId, setActiveConversationId] = useState<string | null>(() => {
+    return localStorage.getItem(ACTIVE_CHAT_KEY);
+  });
   const [isTyping, setIsTyping] = useState(false);
+
+  // Persist conversations to localStorage
+  useEffect(() => {
+    saveConversations(conversations);
+  }, [conversations]);
+
+  // Persist active conversation ID
+  useEffect(() => {
+    if (activeConversationId) {
+      localStorage.setItem(ACTIVE_CHAT_KEY, activeConversationId);
+    } else {
+      localStorage.removeItem(ACTIVE_CHAT_KEY);
+    }
+  }, [activeConversationId]);
 
   // Get current conversation
   const activeConversation = conversations.find((c) => c.id === activeConversationId) ?? null;
@@ -72,7 +119,7 @@ export function useChat() {
         const aiMessage: Message = {
           id: generateId(),
           role: "ai",
-          content: getRandomResponse(),
+          content: generateAIResponse(content),
           timestamp: new Date(),
         };
         setConversations((prev) =>
@@ -81,7 +128,7 @@ export function useChat() {
           )
         );
         setIsTyping(false);
-      }, getResponseDelay());
+      }, 1500 + Math.random() * 1000); // 1.5-2.5 seconds delay
     },
     [activeConversationId]
   );
@@ -95,6 +142,13 @@ export function useChat() {
     [activeConversationId]
   );
 
+  // Rename a conversation
+  const renameConversation = useCallback((id: string, newTitle: string) => {
+    setConversations((prev) =>
+      prev.map((conv) => (conv.id === id ? { ...conv, title: newTitle } : conv))
+    );
+  }, []);
+
   return {
     conversations,
     activeConversation,
@@ -104,5 +158,6 @@ export function useChat() {
     sendMessage,
     setActiveConversationId,
     deleteConversation,
+    renameConversation,
   };
 }

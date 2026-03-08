@@ -1,5 +1,6 @@
-import { Plus, MessageSquare, Trash2, X, Sparkles } from "lucide-react";
+import { Plus, MessageSquare, Trash2, X, Sparkles, Edit2, Check } from "lucide-react";
 import { Conversation } from "@/types/chat";
+import { useState } from "react";
 
 interface SidebarProps {
   conversations: Conversation[];
@@ -7,12 +8,33 @@ interface SidebarProps {
   onSelect: (id: string) => void;
   onNewChat: () => void;
   onDelete: (id: string) => void;
+  onRename: (id: string, newTitle: string) => void;
   isOpen: boolean;
   onClose: () => void;
 }
 
 /** Collapsible sidebar with chat history and new chat button */
-const Sidebar = ({ conversations, activeId, onSelect, onNewChat, onDelete, isOpen, onClose }: SidebarProps) => {
+const Sidebar = ({ conversations, activeId, onSelect, onNewChat, onDelete, onRename, isOpen, onClose }: SidebarProps) => {
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState("");
+
+  const startEditing = (conv: Conversation, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingId(conv.id);
+    setEditValue(conv.title);
+  };
+
+  const saveEdit = (id: string) => {
+    if (editValue.trim()) {
+      onRename(id, editValue.trim());
+    }
+    setEditingId(null);
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditValue("");
+  };
   return (
     <>
       {/* Mobile overlay */}
@@ -85,12 +107,41 @@ const Sidebar = ({ conversations, activeId, onSelect, onNewChat, onDelete, isOpe
                     `}
                   >
                     <MessageSquare className="w-4 h-4 shrink-0" />
-                    <span className="truncate flex-1">{conv.title}</span>
-                    <Trash2
-                      className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-muted-foreground
-                                 hover:text-destructive transition-all shrink-0"
-                      onClick={(e) => { e.stopPropagation(); onDelete(conv.id); }}
-                    />
+                    {editingId === conv.id ? (
+                      <input
+                        type="text"
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        onKeyDown={(e) => {
+                          e.stopPropagation();
+                          if (e.key === "Enter") saveEdit(conv.id);
+                          if (e.key === "Escape") cancelEdit();
+                        }}
+                        onBlur={() => saveEdit(conv.id)}
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex-1 bg-background border border-border rounded px-2 py-0.5 text-foreground outline-none focus:ring-1 focus:ring-primary"
+                        autoFocus
+                      />
+                    ) : (
+                      <span className="truncate flex-1">{conv.title}</span>
+                    )}
+                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                      {editingId === conv.id ? (
+                        <Check
+                          className="w-3.5 h-3.5 text-primary hover:text-primary/80"
+                          onClick={(e) => { e.stopPropagation(); saveEdit(conv.id); }}
+                        />
+                      ) : (
+                        <Edit2
+                          className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground"
+                          onClick={(e) => startEditing(conv, e)}
+                        />
+                      )}
+                      <Trash2
+                        className="w-3.5 h-3.5 text-muted-foreground hover:text-destructive"
+                        onClick={(e) => { e.stopPropagation(); onDelete(conv.id); }}
+                      />
+                    </div>
                   </button>
                 </li>
               ))}
