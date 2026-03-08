@@ -4,7 +4,9 @@ A professional, feature-rich AI chat application with ChatGPT-style interface, A
 
 ## 🚀 Live Demo
 
-**Repository**: [https://github.com/realvivekrana/chatmate-ai-assistant](https://github.com/realvivekrana/chatmate-ai-assistant)
+**🌐 Live Application**: [https://realvivekrana.github.io/chatmate-ai-assistant/](https://realvivekrana.github.io/chatmate-ai-assistant/)
+
+**📦 Repository**: [https://github.com/realvivekrana/chatmate-ai-assistant](https://github.com/realvivekrana/chatmate-ai-assistant)
 
 ## ✨ Features
 
