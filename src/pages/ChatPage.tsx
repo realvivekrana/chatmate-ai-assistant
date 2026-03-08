@@ -45,7 +45,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex h-screen w-full bg-background overflow-hidden">
+    <div className="flex h-[100dvh] w-full bg-background overflow-hidden">
       {/* Sidebar */}
       <ChatGPTSidebar
         conversations={conversations}

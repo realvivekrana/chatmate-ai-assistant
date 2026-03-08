@@ -145,7 +145,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
   };
 
   return (
-    <div className="w-full px-3 py-2 border-t border-border bg-background/95 backdrop-blur-sm">
+    <div className="w-full px-3 py-3 border-t border-border bg-background">
       <div className="max-w-4xl mx-auto w-full">
         {/* Quick Actions Popup */}
         {showQuickActions && (
@@ -211,7 +211,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           {/* Plus button */}
           <button
             onClick={() => setShowQuickActions(!showQuickActions)}
-            className={`h-10 w-10 rounded-lg transition-colors shrink-0 flex items-center justify-center ${
+            className={`h-10 w-10 shrink-0 rounded-lg transition-colors flex items-center justify-center ${
               showQuickActions ? "bg-primary text-primary-foreground" : "hover:bg-background/80"
             }`}
             aria-label="Quick actions"
@@ -236,7 +236,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           {/* Voice button */}
           <button
             onClick={toggleVoiceInput}
-            className={`h-10 w-10 rounded-lg transition-colors shrink-0 flex items-center justify-center ${
+            className={`h-10 w-10 shrink-0 rounded-lg transition-colors flex items-center justify-center ${
               isListening
                 ? "bg-destructive text-destructive-foreground animate-pulse"
                 : "hover:bg-background/80"
@@ -255,9 +255,9 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
           <button
             onClick={handleSend}
             disabled={!value.trim() || disabled}
-            className="h-10 w-10 rounded-lg bg-primary text-primary-foreground
+            className="h-10 w-10 shrink-0 rounded-lg bg-primary text-primary-foreground
                        hover:bg-primary/90 transition-all duration-200
-                       disabled:opacity-40 disabled:cursor-not-allowed shrink-0
+                       disabled:opacity-40 disabled:cursor-not-allowed
                        shadow-sm hover:shadow-md flex items-center justify-center"
             aria-label="Send message"
           >

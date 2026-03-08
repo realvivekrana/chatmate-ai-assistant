@@ -44,11 +44,11 @@ const ChatWindow = ({ conversation, isTyping, onSend, onNewChat, onOpenGallery }
   ];
 
   return (
-    <div className="flex flex-col h-full relative">
+    <div className="flex flex-col h-full w-full relative">
       {/* Messages area - scrollable */}
       <div 
         ref={scrollRef} 
-        className="flex-1 overflow-y-auto overflow-x-hidden"
+        className="flex-1 overflow-y-auto overflow-x-hidden pb-[120px]"
         onScroll={handleScroll}
       >
         {!conversation || conversation.messages.length === 0 ? (
@@ -93,7 +93,7 @@ const ChatWindow = ({ conversation, isTyping, onSend, onNewChat, onOpenGallery }
           </div>
         ) : (
           /* Messages list with improved spacing */
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 pb-32">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
             {conversation.messages.map((msg) => (
               <MessageBubble 
                 key={msg.id} 
@@ -114,7 +114,7 @@ const ChatWindow = ({ conversation, isTyping, onSend, onNewChat, onOpenGallery }
       </div>
 
       {/* Input - fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="fixed bottom-0 left-0 right-0 md:left-[280px]">
         <ChatInput 
           onSend={onSend} 
           disabled={isTyping}

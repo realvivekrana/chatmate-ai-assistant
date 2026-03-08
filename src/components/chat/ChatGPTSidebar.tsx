@@ -180,11 +180,11 @@ const ChatGPTSidebar = ({
       {/* Sidebar panel */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-[280px] z-50 bg-sidebar flex flex-col
+          fixed top-0 left-0 h-[100dvh] w-[280px] z-50 bg-background flex flex-col
           border-r border-border
           transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          md:relative md:translate-x-0
+          md:relative md:translate-x-0 md:h-full
         `}
       >
         {/* Header with New Chat or Search */}
