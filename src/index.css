@@ -122,6 +122,48 @@
     * {
       -webkit-overflow-scrolling: touch;
     }
+
+    /* Minimum touch target size for mobile */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 320px) {
+    /* Extra small phones */
+    .chat-message {
+      max-width: 92% !important;
+    }
+  }
+
+  @media (min-width: 321px) and (max-width: 480px) {
+    /* Small phones */
+    .chat-message {
+      max-width: 90% !important;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    /* Large phones and small tablets */
+    .chat-message {
+      max-width: 85% !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Tablets */
+    .chat-message {
+      max-width: 75% !important;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    /* Desktop */
+    .chat-message {
+      max-width: 65% !important;
+    }
   }
 
   /* Custom scrollbar */

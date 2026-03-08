@@ -145,19 +145,19 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
   };
 
   return (
-    <div className="w-full p-3 sm:p-4 border-t border-border/50 bg-background/95 backdrop-blur shrink-0">
+    <div className="w-full p-2 sm:p-3 md:p-4 border-t border-border/50 bg-background/95 backdrop-blur shrink-0">
       <div className="max-w-4xl mx-auto w-full relative">
         {/* Quick Actions Popup */}
         {showQuickActions && (
           <div
             ref={quickActionsRef}
-            className="absolute bottom-full left-0 mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 min-w-[240px] animate-in fade-in slide-in-from-bottom-2 duration-200"
+            className="absolute bottom-full left-0 right-0 sm:left-0 sm:right-auto mb-2 bg-card border border-border rounded-xl shadow-2xl p-2 sm:min-w-[240px] animate-in fade-in slide-in-from-bottom-2 duration-200 mx-2 sm:mx-0"
           >
             <div className="flex items-center justify-between px-3 py-2 mb-1">
               <span className="text-sm font-semibold text-foreground">Quick Actions</span>
               <button
                 onClick={() => setShowQuickActions(false)}
-                className="p-1 hover:bg-muted rounded transition-colors"
+                className="p-1 hover:bg-muted rounded transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>
@@ -165,53 +165,53 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             <div className="space-y-1">
               <button
                 onClick={() => handleQuickAction("newChat")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
               >
-                <MessageSquarePlus className="w-5 h-5 text-primary" />
-                <div>
+                <MessageSquarePlus className="w-5 h-5 text-primary shrink-0" />
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-foreground">New Chat</div>
-                  <div className="text-xs text-muted-foreground">Start a new conversation</div>
+                  <div className="text-xs text-muted-foreground truncate">Start a new conversation</div>
                 </div>
               </button>
               <button
                 onClick={() => handleQuickAction("upload")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
               >
-                <Upload className="w-5 h-5 text-primary" />
-                <div>
+                <Upload className="w-5 h-5 text-primary shrink-0" />
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-foreground">Upload File</div>
-                  <div className="text-xs text-muted-foreground">Share documents or images</div>
+                  <div className="text-xs text-muted-foreground truncate">Share documents or images</div>
                 </div>
               </button>
               <button
                 onClick={() => handleQuickAction("generateImage")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
               >
-                <Sparkles className="w-5 h-5 text-primary" />
-                <div>
+                <Sparkles className="w-5 h-5 text-primary shrink-0" />
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-foreground">Generate Image</div>
-                  <div className="text-xs text-muted-foreground">Create AI artwork</div>
+                  <div className="text-xs text-muted-foreground truncate">Create AI artwork</div>
                 </div>
               </button>
               <button
                 onClick={() => handleQuickAction("gallery")}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left"
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-muted transition-colors text-left min-h-[44px]"
               >
-                <Image className="w-5 h-5 text-primary" />
-                <div>
+                <Image className="w-5 h-5 text-primary shrink-0" />
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-foreground">Open Gallery</div>
-                  <div className="text-xs text-muted-foreground">Browse AI images</div>
+                  <div className="text-xs text-muted-foreground truncate">Browse AI images</div>
                 </div>
               </button>
             </div>
           </div>
         )}
 
-        <div className="flex items-end gap-2 bg-muted/50 rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200">
+        <div className="flex items-end gap-1.5 sm:gap-2 bg-muted/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border border-border/50 shadow-sm focus-within:border-primary/50 focus-within:shadow-md transition-all duration-200">
           {/* Plus button */}
           <button
             onClick={() => setShowQuickActions(!showQuickActions)}
-            className={`p-2 rounded-lg transition-colors shrink-0 self-end ${
+            className={`p-2 rounded-lg transition-colors shrink-0 self-end min-w-[40px] min-h-[40px] flex items-center justify-center ${
               showQuickActions ? "bg-primary text-primary-foreground" : "hover:bg-background/80"
             }`}
             aria-label="Quick actions"
@@ -231,13 +231,13 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             disabled={disabled || isListening}
             rows={1}
             className="flex-1 bg-transparent text-sm sm:text-base text-foreground placeholder:text-muted-foreground
-                       resize-none outline-none py-2 max-h-[120px] sm:max-h-[150px] min-h-[24px]"
+                       resize-none outline-none py-2 max-h-[100px] sm:max-h-[120px] md:max-h-[150px] min-h-[24px]"
           />
 
           {/* Voice button */}
           <button
             onClick={toggleVoiceInput}
-            className={`p-2 rounded-lg transition-colors shrink-0 self-end ${
+            className={`p-2 rounded-lg transition-colors shrink-0 self-end min-w-[40px] min-h-[40px] flex items-center justify-center ${
               isListening
                 ? "bg-destructive text-destructive-foreground animate-pulse"
                 : "hover:bg-background/80"
@@ -260,7 +260,7 @@ const ChatInput = ({ onSend, disabled, onNewChat, onOpenGallery }: ChatInputProp
             className="p-2 rounded-lg bg-primary text-primary-foreground
                        hover:bg-primary/90 transition-all duration-200
                        disabled:opacity-40 disabled:cursor-not-allowed shrink-0 self-end
-                       shadow-sm hover:shadow-md"
+                       shadow-sm hover:shadow-md min-w-[40px] min-h-[40px] flex items-center justify-center"
             aria-label="Send message"
           >
             <Send className="w-5 h-5" />

@@ -181,14 +181,14 @@ const ChatGPTSidebar = ({
       <aside
         className={`
           fixed lg:relative z-50 top-0 left-0 h-full
-          w-64 bg-sidebar flex flex-col
+          w-[280px] sm:w-64 bg-sidebar flex flex-col
           border-r border-border
           transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
         {/* Header with New Chat or Search */}
-        <div className="p-3 flex items-center justify-between shrink-0 border-b border-border">
+        <div className="p-3 flex items-center justify-between shrink-0 border-b border-border min-h-[56px]">
           {searchMode ? (
             /* Search Input */
             <div className="flex-1 flex items-center gap-2 bg-muted rounded-lg px-3 py-2">
@@ -203,7 +203,7 @@ const ChatGPTSidebar = ({
               />
               <button
                 onClick={closeSearch}
-                className="p-0.5 rounded hover:bg-background transition-colors"
+                className="p-0.5 rounded hover:bg-background transition-colors min-w-[24px] min-h-[24px] flex items-center justify-center"
                 aria-label="Close search"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
@@ -218,14 +218,14 @@ const ChatGPTSidebar = ({
                   onClose();
                 }}
                 className="flex-1 flex items-center gap-2 px-3 py-2.5 rounded-lg
-                         text-sm font-medium text-foreground hover:bg-sidebar-hover transition-colors"
+                         text-sm font-medium text-foreground hover:bg-sidebar-hover transition-colors min-h-[44px]"
               >
-                <Plus className="w-5 h-5" />
-                New Chat
+                <Plus className="w-5 h-5 shrink-0" />
+                <span className="truncate">New Chat</span>
               </button>
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg hover:bg-sidebar-hover transition-colors lg:hidden"
+                className="p-2 rounded-lg hover:bg-sidebar-hover transition-colors lg:hidden min-w-[40px] min-h-[40px] flex items-center justify-center shrink-0"
                 aria-label="Close sidebar"
               >
                 <X className="w-5 h-5 text-muted-foreground" />
@@ -244,10 +244,10 @@ const ChatGPTSidebar = ({
                 disabled={item.disabled}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm
                          text-sidebar-foreground hover:bg-sidebar-hover transition-colors
-                         disabled:opacity-50 disabled:cursor-not-allowed"
+                         disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
               >
-                <item.icon className="w-5 h-5" />
-                {item.label}
+                <item.icon className="w-5 h-5 shrink-0" />
+                <span className="truncate">{item.label}</span>
               </button>
             ))}
           </div>
@@ -404,7 +404,7 @@ const ChatGPTSidebar = ({
               <button
                 onClick={onOpenAuthModal}
                 className="w-full px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium
-                         hover:bg-primary/90 transition-colors"
+                         hover:bg-primary/90 transition-colors min-h-[44px]"
               >
                 Log in
               </button>
